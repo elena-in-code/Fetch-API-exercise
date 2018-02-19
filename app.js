@@ -9,23 +9,17 @@ btn3.addEventListener("click", getExternal);
 
 function getText() {
     fetch("test.txt")
-    .then(function(res){
-        return res.text();
-    })
-    .then(function(data){
+    .then(res => res.text())
+    .then(data => { 
         output.innerHTML = data;
     })
-    .catch(function(err) {
-        console.log(err);
-    });
+    .catch(err => console.log(err));
 }
 
 function getJson() {
     fetch("posts.json")
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(data){
+    .then(res => res.json())
+    .then(data => {
         //console.log(data);
         let answer ="";
         data.forEach(function(post){
@@ -33,17 +27,13 @@ function getJson() {
         });
         output.innerHTML = answer;
     })
-    .catch(function(err) {
-        console.log(err);
-    });
+    .catch(err => console.log(err));
 }
 
 function getExternal() {
     fetch("https://api.github.com/users")
-    .then(function(res){
-        return res.json();
-    })
-    .then(function(data){
+    .then(res => res.json())
+    .then(data => {
         //console.log(data);
         let answer ="";
         data.forEach(function(user){
@@ -51,7 +41,54 @@ function getExternal() {
         });
         output.innerHTML = answer;
     })
-    .catch(function(err) {
-        console.log(err);
-    });
+    .catch(err => console.log(err));
 }
+/*
+//Arrow function explanation:++++++++++++++++++++
+
+//Standard function:
+const sayHello = function() {
+    console.log("Hello");
+}
+sayHello();
+
+//Arrow function:
+const sayHello = () => {
+    console.log("Hello");
+}
+sayHello();
+
+//Arrow function - more compact - one line function does not need braces:
+const sayHello = () => console.log("Hello");
+sayHello();
+
+//One line returns
+const sayHello = () => "Hello";
+console.log(sayHello());
+
+//return object
+const sayHello = () => ({msg: "Hello"});
+console.log(sayHello());
+
+//single parameter dont need parenthesis
+const sayHello = name => console.log(`Hello ${name}`);
+sayHello("Teresa");
+
+//multiple parameters
+const sayHello = (firstName, lastName) => console.log(`Hello ${firstName} ${lastName}`);
+sayHello("Teresa", "Boo");
+
+//arrow functions as callbacks
+const users = ['Marta', 'Karl', 'Patrice'];
+    //standard
+const nameLengths = users.map(function(name){
+    return name.length;
+});
+    //arrow
+const nameLengths = users.map((name) => {
+    return name.length;
+});
+    //arrow shortest
+const nameLengths = users.map(name => name.length);
+console.log(nameLengths);
+*/
